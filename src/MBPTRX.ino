@@ -136,14 +136,15 @@
 #define VOX_TIMEOUT 250u
 #define POPUP_TIMEOUT 5000u
 #define BAND_80M 0
-#define BAND_40M 1
-#define BAND_30M 2
-#define BAND_20M 3
-#define BAND_17M 4
-#define BAND_15M 5
-#define BAND_12M 6
-#define BAND_10M 7
-#define BAND_SWL 8
+#define BAND_60M 1
+#define BAND_40M 2
+#define BAND_30M 3
+#define BAND_20M 4
+#define BAND_17M 5
+#define BAND_15M 6
+#define BAND_12M 7
+#define BAND_10M 8
+#define BAND_SWL 9
 #define BAND_MIN BAND_80M
 #define BAND_MAX BAND_SWL
 #define NUM_BANDS 9
@@ -161,7 +162,7 @@
 #define NOTCH_HIGH 2600ul
 #define DEFAULT_NOTCH 1000ul
 #define BUTTON_LONG_PRESS_TIME 800ul
-#define TCXO_FREQ 27000021ul
+#define TCXO_FREQ 26000000ul
 #define SPECTRUM_LEVEL_MIN -4
 #define SPECTRUM_LEVEL_MAX 4
 #define LPF_I2C_ADDRESS 0x20U
@@ -172,8 +173,8 @@
 
 #define PIN_PTT      0 // Mic PTT (active low)
 #define PIN_ENCBUT   1 // on rotary
-#define PIN_ENCA     2 // rotary
-#define PIN_ENCB     3 // rotary
+#define PIN_ENCA     3 // rotary
+#define PIN_ENCB     2 // rotary
 #define PIN_SDA      4 // I2C
 #define PIN_SCL      5 // I2C
 #define PIN_TX000    6 // TX PWM
@@ -404,6 +405,7 @@ static struct
 bands[] =
 {
   { 3500000UL,  3800000UL,  3600000UL},
+  { 5330000UL,  5406000UL,  5350000UL},
   { 7000000UL,  7300000UL,  7100000UL},
   {10100000UL, 10150000UL, 10120000UL},
   {14000000UL, 14350000UL, 14200000UL},
@@ -421,6 +423,7 @@ volatile static struct
 save_data[] =
 {
   { 3600000UL},
+  { 5350000UL},
   { 7100000UL},
   {10120000UL},
   {14200000UL},
@@ -497,8 +500,8 @@ static void error_stop(const uint32_t err_code)
   // self-test error code
   pinMode(LED_BUILTIN,OUTPUT);
   digitalWrite(LED_BUILTIN,LOW);
-  for (;;)
-  {
+  //for (;;)
+  //{
     for (uint32_t i=0;i<err_code;i++)
     {
       digitalWrite(LED_BUILTIN,HIGH);
@@ -508,7 +511,7 @@ static void error_stop(const uint32_t err_code)
     }
     delay(1000);
   }
-}
+//}
 
 static void mute(void)
 {
@@ -977,7 +980,7 @@ void setup(void)
   {
     error_stop(ERROR_FWDADC);
   }
-  if (!refADC.begin(1))
+  if (!refADC.begin(5))
   {
     error_stop(ERROR_REFADC);
   }
@@ -1481,6 +1484,7 @@ static void show_band(void)
   switch (radio.band)
   {
     case BAND_80M: sz_band = "80M"; break;
+    case BAND_60M: sz_band = "60M"; break;
     case BAND_40M: sz_band = "40M"; break;
     case BAND_30M: sz_band = "30M"; break;
     case BAND_20M: sz_band = "20M"; break;
@@ -4780,6 +4784,7 @@ void loop(void)
         case OPTION_STEP_10000:      radio.step = 10000U;                            break;
         case OPTION_STEP_100000:     radio.step = 100000U;                           break;
         case OPTION_BAND_80M:        radio.band = BAND_80M;                          break;
+        case OPTION_BAND_60M:        radio.band = BAND_60M;                          break;
         case OPTION_BAND_40M:        radio.band = BAND_40M;                          break;
         case OPTION_BAND_30M:        radio.band = BAND_30M;                          break;
         case OPTION_BAND_20M:        radio.band = BAND_20M;                          break;
