@@ -1,3 +1,5 @@
+# This repo is a fork of Ian VK7IAN's project. It contains some small fixes and experiments, mainly with a 320x170 display. 
+
 # MBPTRX
 A software defined multi-band phasing transceiver.
 
