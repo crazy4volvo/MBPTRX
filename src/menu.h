@@ -33,7 +33,7 @@
 */
 
 #define NUM_MENU_ITEMS 20U
-#define NUM_MENU_OPTIONS 10U
+#define NUM_MENU_OPTIONS 11U
 
 enum menu_top_t
 {
@@ -78,6 +78,7 @@ enum option_value_t
   OPTION_MODE_AM,
   OPTION_MODE_AUTO,
   OPTION_BAND_80M,
+  OPTION_BAND_60M,
   OPTION_BAND_40M,
   OPTION_BAND_30M,
   OPTION_BAND_20M,
@@ -176,9 +177,10 @@ menu_options[NUM_MENU_ITEMS] =
   {
     MENU_BAND,
     "Band",
-    10U,
+    11U,
     {
       {OPTION_BAND_80M,"80M"},
+      {OPTION_BAND_60M,"60M"},
       {OPTION_BAND_40M,"40M"},
       {OPTION_BAND_30M,"30M"},
       {OPTION_BAND_20M,"20M"},

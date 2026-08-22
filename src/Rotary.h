@@ -8,7 +8,7 @@
 #include "Arduino.h"
 
 // Enable this to emit codes twice per step.
-#define HALF_STEP
+//#define HALF_STEP
 
 // Values returned by 'process'
 // No complete step yet.
