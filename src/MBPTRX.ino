@@ -212,8 +212,8 @@
 #define I2C_PIN_MUTE     4 // low to mute audio
 
 // width and height of LCD
-#define LCD_WIDTH         240
-#define LCD_HEIGHT        135
+#define LCD_WIDTH         320
+#define LCD_HEIGHT        170
 #define POS_CALL_X         70
 #define POS_SPLASH_X       55
 #define POS_SPLASH_Y       60
@@ -229,7 +229,7 @@
 #define POS_MODE_Y         30
 #define POS_BAND_X         57
 #define POS_BAND_Y         30
-#define POS_CPU_X         199
+#define POS_CPU_X         279
 #define POS_CPU_Y          30
 #define POS_JNR_X         199
 #define POS_JNR_Y          52
@@ -255,8 +255,8 @@
 #define POS_CW_SETTINGS_Y  52
 #define POS_CESSB_MIC_X     0
 #define POS_CESSB_MIC_Y    52
-#define POS_CENTER_LEFT   119
-#define POS_CENTER_RIGHT  120
+#define POS_CENTER_LEFT   159
+#define POS_CENTER_RIGHT  160
 #define POS_MENU_X         40
 #define POS_MENU_Y         30
 #define MENU_WIDTH        160
@@ -293,7 +293,7 @@
 // two buffers of 1024 FFT bins
 #define MAX_ADC_SAMPLES 2048
 #define SPECTRUM_BUFFER 1024
-#define WATERFALL_ROWS 41
+#define WATERFALL_ROWS 96
 
 static_assert((MAX_ADC_SAMPLES & (MAX_ADC_SAMPLES - 1)) == 0, "MAX_ADC_SAMPLES must be a power of 2");
 
@@ -487,7 +487,7 @@ volatile static char cw_decode_buf[32] = "";
 
 volatile static uint32_t wp = 0;
 static uint8_t water[WATERFALL_ROWS][LCD_WIDTH] = {0};
-static uint8_t magnitude[1024] = {0};
+static uint8_t magnitude[1400] = {0};
 
 /*
  * Callsign and 4-character Maidenhead grid entry for uDST / MBPTRX.
@@ -1040,6 +1040,7 @@ void setup(void)
   tft.setRotation(1);
   tft.fillScreen(LCD_BLACK);
   tft.displayOn();
+  lcd.setColorDepth(8);
   lcd.createSprite(LCD_WIDTH, LCD_HEIGHT);
   lcd.fillSprite(LCD_BLACK);
   lcd.pushSprite(0,0);
@@ -1910,7 +1911,7 @@ static void show_spectrum(void)
     // x=239 => x*4+34 = 239*4+34 = 990
     // x=239 => x*4+35 = 239*4+35 = 991
     // x=239 => x*4+36 = 239*4+36 = 992
-    uint8_t droplet = magnitude[x*4+33];
+    uint32_t droplet = magnitude[x*4+33];
     droplet = max(droplet,magnitude[x*4+34]);
     droplet = max(droplet,magnitude[x*4+35]);
     droplet = max(droplet,magnitude[x*4+36]);
