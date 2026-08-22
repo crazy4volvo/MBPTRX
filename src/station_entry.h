@@ -63,15 +63,15 @@ static inline bool entry_button(void)
 }
 
 /* Panel geometry and RGB565 colours (swap in your LCD_* names if you like). */
-#define ENTRY_W             240
-#define ENTRY_H             135
+#define ENTRY_W             320
+#define ENTRY_H             170
 
-#define ENTRY_Y_TITLE       4       /* top of the title, size 2         */
-#define ENTRY_Y_CELLS       42      /* vertical centre of the char row  */
-#define ENTRY_Y_BUTTONS     70      /* top of the button row            */
+#define ENTRY_Y_TITLE       24       /* top of the title, size 2         */
+#define ENTRY_Y_CELLS       62      /* vertical centre of the char row  */
+#define ENTRY_Y_BUTTONS     90      /* top of the button row            */
 #define ENTRY_H_BUTTONS     26
-#define ENTRY_Y_HINT1       104
-#define ENTRY_Y_HINT2       116
+#define ENTRY_Y_HINT1       124
+#define ENTRY_Y_HINT2       136
 
 #define ENTRY_COL_BG        0x0000
 #define ENTRY_COL_TITLE     0xFFE0
