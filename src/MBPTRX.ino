@@ -1938,7 +1938,7 @@ static void show_spectrum(void)
   else
   {
     // SPECTRUM_GRASS
-    lcd.fillRectVGradient(0,POS_WATER_Y,240,32,LCD_RED,LCD_YELLOW);
+    lcd.fillRectVGradient(0,POS_WATER_Y,320,32,LCD_RED,LCD_YELLOW);
     for (uint32_t x=0;x<LCD_WIDTH;x++)
     {
       /*
