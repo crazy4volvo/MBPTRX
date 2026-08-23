@@ -6,6 +6,8 @@
  * Licenced under the GNU GPL Version 3
  *   (unless otherwise indicated)
  *
+ * Mods mainly for 320x170 display - SP5LU
+ * 
  * Libraries
  *
  *  https://github.com/Bodmer/TFT_eSPI
@@ -487,7 +489,7 @@ volatile static char cw_decode_buf[32] = "";
 
 volatile static uint32_t wp = 0;
 static uint8_t water[WATERFALL_ROWS][LCD_WIDTH] = {0};
-static uint8_t magnitude[1400] = {0};
+static uint8_t magnitude[1024] = {0};
 
 /*
  * Callsign and 4-character Maidenhead grid entry for uDST / MBPTRX.
@@ -1911,10 +1913,10 @@ static void show_spectrum(void)
     // x=239 => x*4+34 = 239*4+34 = 990
     // x=239 => x*4+35 = 239*4+35 = 991
     // x=239 => x*4+36 = 239*4+36 = 992
-    uint32_t droplet = magnitude[x*4+33];
-    droplet = max(droplet,magnitude[x*4+34]);
-    droplet = max(droplet,magnitude[x*4+35]);
-    droplet = max(droplet,magnitude[x*4+36]);
+    uint32_t droplet = magnitude[x*3+33];
+    droplet = max(droplet,magnitude[x*3+34]);
+    droplet = max(droplet,magnitude[x*3+35]);
+    droplet = max(droplet,magnitude[x*3+36]);
     if (droplet>31) droplet = 31;
     water[wp][x] = droplet;
   }
