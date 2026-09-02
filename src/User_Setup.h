@@ -9,19 +9,14 @@
 //   run without the need to make any more changes for a particular hardware setup!
 //   Note that some sketches are designed for a particular TFT pixel width/height
 
-//#define USER_SETUP_ID 407
-#define DISABLE_ALL_LIBRARY_WARNINGS //suppresses touch warnings
+#define DISABLE_ALL_LIBRARY_WARNINGS
 #define ST7789_DRIVER      // Full configuration option, define additional parameters below for this display
 //#define ST7789_2_DRIVER    // Minimal configuration option, define additional parameters below for this display
 #define CGRAM_OFFSET      // Library will add offsets required
 #define TFT_WIDTH  170
 #define TFT_HEIGHT 320
-//#define TFT_WIDTH  240
-//#define TFT_HEIGHT 240
 #define TFT_RGB_ORDER TFT_RGB 
-//#define TFT_WIDTH  135
-//#define TFT_HEIGHT 240
-//#define TFT_INVERSION_ON
+
 // ##################################################################################
 //
 // Section 2. Define the pins that are used to interface with the display here
@@ -68,7 +63,7 @@
 
 //#define RP2040_PIO_SPI
 
-#define SPI_FREQUENCY  27000000
+#define SPI_FREQUENCY  20000000
 // #define SPI_FREQUENCY  27000000
 //#define SPI_FREQUENCY  40000000
 //#err got here
