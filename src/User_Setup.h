@@ -68,7 +68,7 @@
 
 //#define RP2040_PIO_SPI
 
-#define SPI_FREQUENCY  40000000
+#define SPI_FREQUENCY  27000000
 // #define SPI_FREQUENCY  27000000
 //#define SPI_FREQUENCY  40000000
 //#err got here
